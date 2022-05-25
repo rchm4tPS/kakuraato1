@@ -1,32 +1,33 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include "boolean.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <string.h>
 
 #define Nil NULL
 #define Info(P) (P)->info
 #define Next(P) (P)->next
-#define First(L) (L).First
+//#define First(L) (L).First
+#define infotype int
 
 typedef struct tNodeList* address;
-	  typedef struct tNodeList {
-		char expression[40];
-		address next;
-	  }
-	  typedef struct 
-	  {
-		address root/head;
-	  }
+typedef struct tNodeList {
+	char expression[40];
+	address next;
+}NodeList;
+typedef struct{
+	address root;
+} List;
 	  
-void CreateList (List *L);
+void CreateList(List *L);
 /* 	I.S : L terdefinisi, tidak diketahui nilainya
 	F.S : L diinisialisasi first(L) = nil
 */
 
-address Alokasi (infotype X);
+address Alokasi(char* expression);
 /*	Mengirimkan address hasil alokasi sebuah elemen
 	Jika alokasi berhasil, maka address !=Nil,
 	dan misalnya menghasilkan P, maka Info(P)= x, Next(P)=Nil
@@ -39,14 +40,8 @@ void DeAlokasi (address P);
 	Melakukan dealokasi/ pengembalian address P ke system.
 */
 
-void InsFirst (List *L, infotype X);
-/*	I.S : L terdefinisi, mungkin kosong
-	F.S : melakukan alokasi sebuah elemen dan
-		  menambahkan elemen pertama pada List dengan nilai X jika alokasi
-	      berhasil. Jika alokasi gagal IS = FS
-*/
 
-void InsLast(List *L, infotype X);
+void InsLast (List *L, char* expression);
 /*I.S : L terdefinisi, mungkin kosong
 F.S : melakukan alokasi sebuah elemen dan
 menambahkan elemen terakhir pada List dengan nilai X jika alokasi
@@ -60,5 +55,6 @@ elemen list ke layar. jika List kosong, hanya menampilkan pesan “list
 kosong”
 */
 
+#endif
 
 	  

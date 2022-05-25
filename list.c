@@ -1,71 +1,55 @@
-#include "List.h"
+#include "list.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <string.h>
 
 
 void CreateList(List *L)
 {
-    First(*L) = Nil;
+    L->root = Nil;
 }
 
-address Alokasi(infotype X)
+address Alokasi(char* expression)
 {
     address newItem = (address)malloc(sizeof(NodeList));
     if (newItem != Nil)
     {
-        Info(newItem) = X;
+      	strcpy(newItem->expression, expression);
         Next(newItem) = Nil;
     }
-    return P;
+    return newItem;
 }
-
-void DeAlokasi (address P) 
-{
-    free(P);
-}
-
-void InsFirst (List *L, infotype X) {
-    address Node1 = Alokasi(X); 
-
-    if (Node1 != Nil)
-    {
-        if (First(*L) != Nil)
-        {
-            Node1->next = First(*L);
-            First(*L) = Node1;
-        } else {
-            First(*L) = Node1;
-        }
-    }
-}
-
-void InsLast (List *L, infotype X) {
-    address NodeLast = Alokasi(X);      
-    address tmp = First(*L);        
+void InsLast (List *L, char* expression) {
+    address NodeLast = Alokasi(expression);      
+    address tmp =L->root;        
 
     if (NodeLast != Nil)
     {
-        while (tmp->next != Nil)
-        {
-            tmp = tmp->next;
-        }
-        tmp->next = NodeLast;
+    	if(tmp != Nil){
+		
+	        while (tmp->next != Nil)
+	        {
+	            tmp = tmp->next;
+	        }
+	        tmp->next = NodeLast;
+    	} else {
+    		L->root = NodeLast;
+		}
     }
+
 }
 
 void PrintInfo (List L) {
-    address tmp = First(L);
+   address tmp = L.root;  
 
-    if (ListEmpty(L) == false || NbElmt(L) != 0) {
+    if (L.root != Nil) {
         while (tmp != Nil)
         {
-            printf("%d ", tmp->info);
+            printf("%s\n", tmp->expression);
             tmp = tmp->next;
         }
-    } else {
-        printf("list kosong");
-    }
+	}
 
     printf("\n");
 }
