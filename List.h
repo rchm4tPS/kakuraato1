@@ -10,8 +10,6 @@
 #define Nil NULL
 #define Info(P) (P)->info
 #define Next(P) (P)->next
-//#define First(L) (L).First
-#define infotype int
 
 typedef struct tNodeList* address;
 typedef struct tNodeList {

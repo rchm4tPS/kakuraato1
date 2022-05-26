@@ -1,9 +1,17 @@
-#ifndef stack_h
-#define stack_h
+/**
+ * @file stack.h
+ * @author Danu Mahesa
+ * @brief header file untuk stack alokasi statis dengan array
+ * Date : 26 Mei 2022
+ * 
+ */
+
+#ifndef stack_H
+#define stack_H
 
 #include<stdio.h>
 #include<conio.h>
-#include<ctype.h>
+#include <stdbool.h>
  
 #define MAX 20
 

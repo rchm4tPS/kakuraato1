@@ -9,4 +9,6 @@ void tampilHistory();
 void tampilCredit();
 int getWidth();
 int getHeight();
+
+
 #endif

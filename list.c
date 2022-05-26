@@ -1,3 +1,12 @@
+/**
+ * @file list.c
+ * @author Husna Maulana
+ * @brief implementasi header file list.h dengan alokasi dinamis untuk program kalkulator
+ * 
+ * Date     : 26 Mei 2022
+ * 
+ */
+
 #include "list.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,6 +29,7 @@ address Alokasi(char* expression)
     }
     return newItem;
 }
+
 void InsLast (List *L, char* expression) {
     address NodeLast = Alokasi(expression);      
     address tmp =L->root;        
