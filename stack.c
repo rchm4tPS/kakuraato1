@@ -1,7 +1,8 @@
-#include "stack.h"
+
 #include <stdio.h>
 #include <string.h>
-#include "stackt.h"
+#include <ctype.h>
+#include "stack.h"
 
 void createStack(tNodeStack *stack){
     stack->top=-1;
@@ -25,15 +26,21 @@ int isFull(tNodeStack *stack)
 
 void Push(tNodeStack *stack,int x)
 {
-    stack->top=stack->top+1;
-    stack->oper[stack->top]=x;
+    if (!isFull(stack)) {
+        stack->top=stack->top+1;
+        stack->oper[stack->top]=x;
+    }
 }
 
 int Pop(tNodeStack *stack)
 {
-    int x;
-    x=stack->oper[stack->top];
-    stack->top=stack->top-1;
+    int x = -999;
+    
+    if (!isEmpty(stack)) {
+        x=stack->oper[stack->top];
+        stack->top=stack->top-1;
+    }
+
     return(x);
 }
 
@@ -65,7 +72,7 @@ void infix_to_postfix(char infix[],char postfix[])
     for(i=0;infix[i]!='\0';i++)
     {
         token=infix[i];
-        if(isalnum(token))
+        if(isalnum(token))      // check if token is "alphanumeric" character or not
             postfix[j++]=token;
         else
             if(token=='(')
@@ -74,7 +81,7 @@ void infix_to_postfix(char infix[],char postfix[])
             if(token==')')
                 while((x=Pop(&s))!='(')
                       postfix[j++]=x;
-                else
+            else
                 {
                     while(getPriority(token)<=getPriority(Top(&s))&&!isEmpty(&s))
                     {

@@ -121,7 +121,7 @@ int getWidth()
     info.cbSize = sizeof(info);
     GetConsoleScreenBufferInfoEx(hConsole, &info);
 
-    width = info.srWindow.Right;
+    int width = info.srWindow.Right;
 	
 	return width;
 }
@@ -135,7 +135,7 @@ int getHeight()
     info.cbSize = sizeof(info);
     GetConsoleScreenBufferInfoEx(hConsole, &info);
 
-    height = info.srWindow.Bottom;
+    int height = info.srWindow.Bottom;
     
 	return height;
 }
