@@ -1,5 +1,9 @@
 /**
- *
+ *  Program file name   : binaryTree.h
+ *  Description         : deklarasi header file untuk struktur data binary tree pada program kalkulator
+ *  Author              : Rachmat Purwa Saputra, 211524054
+ *  Date                : 26 Mei 2022
+ *  Compiler            : GCC
  *
  */
 
@@ -19,9 +23,7 @@ typedef struct tNodeBinTree {
     bool isOperand;                 // value checking whether the node is number or not
     addr left, right;
 } NodeBinTree;
-typedef struct {
-    addr root;                      // address of root node
-} BinTree;
+
 
 addr createNode (double opValue, bool isOperand);
 
@@ -32,5 +34,6 @@ void printTree (addr root, char* expression);
 addr BuildTreeFromPostfix (char* expression);
 
 double TreeCalculate(addr root);
+
 
 #endif
