@@ -70,8 +70,9 @@ int infix_to_postfix(char infix[],char postfix[])
 
         // if(isalnum(token))      // check if token is "alphanumeric" character or not
         //     postfix[j++]=token;
-        
-        if (isdigit(infix[i]) || infix[i] == '.') {
+        if (token == ' ') continue;
+
+        else if (isdigit(infix[i]) || infix[i] == '.') {
             do {
                 postfix[j++] = infix[i++];
             } while (isdigit(infix[i]) || infix[i] == '.');
@@ -100,6 +101,7 @@ int infix_to_postfix(char infix[],char postfix[])
             {
                 x=Pop(s);
                 postfix[j++]=x;
+                postfix[j++] = ' ';
             }
 
             if (infix[i] == '-' && isdigit(infix[i-1])) {

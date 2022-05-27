@@ -99,17 +99,13 @@ addr BuildTreeFromPostfix (char* expression) {
     char number[40];
     double temp;
 
-    // Ambil panjang expression
     len = strlen(expression);
 
-    // Cek
     for (i = len - 1; i >= 0; i--) {
-        // Spasi
         if (expression[i] == ' ') {
       		continue;
    		}
 
-        // Operand
         if (isdigit(expression[i]) || expression[i] == '.') {
             index = 0;
             do {
@@ -117,15 +113,12 @@ addr BuildTreeFromPostfix (char* expression) {
             } while ((i >= 0 && isdigit(expression[i])) || expression[i] == '.');
             number [index] = '\0';
 
-            // String to double
+            
             temp = strtod(strrev(number), NULL); 
-            // Masuk dalam tree
             tree = insertNodeToTree(temp, true, tree);
         }
 
-        // Operator
         else {
-        	// Masuk dalam tree
             tree = insertNodeToTree(expression[i], false, tree);
         }
         

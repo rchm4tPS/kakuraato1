@@ -16,11 +16,10 @@ int main() {
     printf(" \n%s\n", postfix);
     
     addr treeRoot = BuildTreeFromPostfix(postfix);
+    printTree(treeRoot, treeHistory);
 
     double result = TreeCalculate(treeRoot);
     printf(" \n The result is : %.2f", TreeCalculate(treeRoot));
-
-    // printBanner();
 
     return 0;
 }
