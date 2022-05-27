@@ -2,10 +2,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 #include "stack.h"
 
-void createStack(tNodeStack *stack){
+tNodeStack* createStack(int length){
+    tNodeStack* stack = (tNodeStack*)malloc(sizeof(tNodeStack));
+    stack->oper = (int*)malloc(sizeof(int) * length);
+
     stack->top=-1;
+
+    return stack;
 }
 
 int isEmpty(tNodeStack *stack)
@@ -16,32 +22,19 @@ int isEmpty(tNodeStack *stack)
    		return(0);
 }
 
-int isFull(tNodeStack *stack)
+void Push(tNodeStack *stack, char x)
 {
-    if(stack->top==MAX-1)
-    	return(1);
- 	else
-    	return(0);
+    stack->top=stack->top+1;
+    stack->oper[stack->top]=x;
 }
 
-void Push(tNodeStack *stack,int x)
-{
-    if (!isFull(stack)) {
-        stack->top=stack->top+1;
-        stack->oper[stack->top]=x;
-    }
-}
-
-int Pop(tNodeStack *stack)
-{
-    int x = -999;
-    
+char Pop(tNodeStack *stack)
+{    
     if (!isEmpty(stack)) {
-        x=stack->oper[stack->top];
-        stack->top=stack->top-1;
+        return stack->oper[stack->top--];
+    } else {
+        return '\0';
     }
-
-    return(x);
 }
 
 int Top(tNodeStack *p){
@@ -49,54 +42,82 @@ int Top(tNodeStack *p){
 }
 
 int getPriority(char opr){
-    if(opr=='(')
-        return(1);
+    // if(opr=='(')
+    //     return(1);
     if(opr=='+'||opr=='-')
-        return(2);
+        return(1);
     if(opr=='*'||opr=='/')
+        return(2);
+    if(opr=='^')
         return(3);
-    if(opr=='^'||opr=='#')
+    if(opr=='#')
         return(4);
  	else
     	return(-1);
 }
 
-void infix_to_postfix(char infix[],char postfix[])
+int infix_to_postfix(char infix[],char postfix[])
 {
-    tNodeStack s;
+    tNodeStack* s = createStack(strlen(infix));
     char x,token;
     int i,j;    //i-index of infix,j-index of postfix
-    createStack(&s);
+    
     j=0;
  
     for(i=0;infix[i]!='\0';i++)
     {
         token=infix[i];
-        if(isalnum(token))      // check if token is "alphanumeric" character or not
-            postfix[j++]=token;
-        else
-            if(token=='(')
-               Push(&s,'(');
-        else
-            if(token==')')
-                while((x=Pop(&s))!='(')
-                      postfix[j++]=x;
-            else
-                {
-                    while(getPriority(token)<=getPriority(Top(&s))&&!isEmpty(&s))
-                    {
-                        x=Pop(&s);
-                        postfix[j++]=x;
-                    }
-                    Push(&s,token);
-                }
+
+        // if(isalnum(token))      // check if token is "alphanumeric" character or not
+        //     postfix[j++]=token;
+        
+        if (isdigit(infix[i]) || infix[i] == '.') {
+            do {
+                postfix[j++] = infix[i++];
+            } while (isdigit(infix[i]) || infix[i] == '.');
+            postfix[j++] = ' ';
+            i--;
+        }
+        
+        else if(token=='(')
+            Push(s, token);
+        
+        else if(token==')') {
+            while((x=Top(s))!='(' && !isEmpty(s)) {
+                postfix[j++]= Pop(s);
+                postfix[j++] = ' ';
+            }
+                    
+            if (!isEmpty(s) && Top(s) != '(') {
+                return -1;
+            } else {
+                Pop(s);
+            }
+        }
+
+        else {
+            while(getPriority(token) <= getPriority(Top(s)) && !isEmpty(s))
+            {
+                x=Pop(s);
+                postfix[j++]=x;
+            }
+
+            if (infix[i] == '-' && isdigit(infix[i-1])) {
+                Push(s, '+');
+            }
+
+            Push(s,token);
+        }
     }
  
-    while(!isEmpty(&s))
+    while(!isEmpty(s))
     {
-        x=Pop(&s);
+        x=Pop(s);
         postfix[j++]=x;
+        postfix[j++]=' ';
     }
  
-    postfix[j]='\0';
+    postfix[j--]='\0';
+
+    return 0;
 }

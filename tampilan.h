@@ -9,6 +9,6 @@ void tampilHistory();
 void tampilCredit();
 int getWidth();
 int getHeight();
-
+void printBanner();  // masih belum bener
 
 #endif

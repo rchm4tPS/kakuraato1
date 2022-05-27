@@ -16,24 +16,22 @@
 #define MAX 20
 
 typedef struct tNodeStack{
-    char oper[MAX];
+    int* oper;
     int top;
 }tNodeStack;
 
-void createStack(tNodeStack *stack);
+tNodeStack* createStack(int length);
 
 int isEmpty(tNodeStack *stack);
 
-int isFull(tNodeStack *stack);
+char Pop(tNodeStack *stack);
 
-int Pop(tNodeStack *stack);
-
-void Push(tNodeStack *stack, int x);
+void Push(tNodeStack *stack, char x);
 
 int Top(tNodeStack *p); 
 
 int getPriority(char opr);
 
-void infix_to_postfix(char infix[],char postfix[]);
+int infix_to_postfix(char infix[],char postfix[]);
 
 #endif
