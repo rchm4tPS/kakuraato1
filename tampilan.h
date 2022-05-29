@@ -9,6 +9,7 @@ void tampilHistory();
 void tampilCredit();
 int getWidth();
 int getHeight();
-void printBanner();  // masih belum bener
+void printBanner();
+void printASCII(char ch);
 
 #endif

@@ -6,22 +6,23 @@
 #include "tampilan.h"
 
 void tampilMainMenu(){
- printf("\t\t\t\t========================================================================\n");
- printf("\t\t\t\t\tKAKURAATO\n");
- printf("\n");
- printf("\t\t\t\t\tPilihan Menu:\n");
- printf("\t\t\t\t\t1. Kalkulator Standar\n");
- printf("\t\t\t\t\t2. Kalkulator Akar Kuadrat\n");
- printf("\t\t\t\t\t3. Help\n");
- printf("\t\t\t\t\t4. History Penggunaan Kakuraato\n");
- printf("\n");
- printf("\t\t\t\t\t0. Exit\n");
- printf("\n\n");
- printf("\t\t\t\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
- printf("\t\t\t\t\t%c Menu Yang Dipilih : [ ] %c\n",186,186);
- printf("\t\t\t\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
- printf("\n\n");
- printf("\t\t\t\t========================================================================\n");
+	printf("\n\n\t\t\t\t===========================================================================\n");
+	//  printf("\t\t\t\t\tKAKURAATO\n");
+	printBanner();
+	printf("\n\n");
+	printf("\t\t\t\t\tPilihan Menu:\n");
+	printf("\t\t\t\t\t1. Kalkulator Standar\n");
+	printf("\t\t\t\t\t2. Kalkulator Akar Kuadrat\n");
+	printf("\t\t\t\t\t3. Help\n");
+	printf("\t\t\t\t\t4. History Penggunaan Kakuraato\n");
+	printf("\n");
+	printf("\t\t\t\t\t0. Exit\n");
+	printf("\n\n");
+	printf("\t\t\t\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,187);
+	printf("\t\t\t\t\t%c  Menu Yang Dipilih : [ ]  %c\n",186,186);
+	printf("\t\t\t\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
+	printf("\n\n");
+	printf("\t\t\t\t===========================================================================\n");
 }
 
 void tampilKalkStandar(){
@@ -142,12 +143,40 @@ int getHeight()
 }
 
 void printBanner() {
-	char banner[] = "██╗  ██╗ █████╗ ██╗  ██╗██╗   ██╗██████╗  █████╗  █████╗ ████████╗ ██████╗\n" 
-                    "██║ ██╔╝██╔══██╗██║ ██╔╝██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗\n"
-					"█████╔╝ ███████║█████╔╝ ██║   ██║██████╔╝███████║███████║   ██║   ██║   ██║\n"
-					"██╔═██╗ ██╔══██║██╔═██╗ ██║   ██║██╔══██╗██╔══██║██╔══██║   ██║   ██║   ██║\n"
-					"██║  ██╗██║  ██║██║  ██╗╚██████╔╝██║  ██║██║  ██║██║  ██║   ██║   ╚██████╔╝\n"
-					"╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝";
-	printf("%s", banner);
+	char banner_active[6][68] = {"==]  ==] =====] ==]  ==]==]   ==]======]  =====] ========] ======] ",
+								 "==| ==[/==[__==]==| ==[/==|   ==|==[__==]==[__==]L__==[__/==[___==]",
+								 "=====[/ =======|=====[/ ==|   ==|======[/=======|   ==|   ==|   ==|",
+								 "==| ==] ==[__==|==[_==] ==|   ==|==[__==]==[__==|   ==|   ==|   ==|",
+								 "==|  ==]==|  ==|==|  ==]L======[/==|  ==|==|  ==|   ==|   L======[/",
+								 "L_/  L_/L_/  L_/L_/  L_/ L_____/ L_/  L_/L_/  L_/   L_/    L_____/ "
+								};
+	
+	for (int i = 0; i < 6; i++) {
+		gotoxy(36, 5+i);
+		for (int j = 0; j < 68; j++) {
+			printASCII(banner_active[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void printASCII(char ch) {
+	if (ch == '=') {
+		printf("%c", 219);
+	} else if (ch == '|') {
+		printf("%c", 186);
+	} else if (ch == ']') {
+		printf("%c", 187);
+	} else if (ch == '/') {
+		printf("%c", 188);
+	} else if (ch == '[') {
+		printf("%c", 201);
+	} else if (ch == 'L') {
+		printf("%c", 200);
+	} else if (ch == ' ') {
+		printf("%c", 32);
+	} else if (ch == '_') {
+		printf("%c", 205);
+	}
 }
 
