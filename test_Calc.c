@@ -2,6 +2,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<windows.h>
+#include<conio.h>
 
 #include "binaryTree.c"
 #include "stack.c"
@@ -10,25 +11,43 @@
 int main() {
     system("cls");
     system("mode 145, 40");
-
-    tampilMainMenu();
-    printf("\n");
-
+	
     char infix[21];
     char postfix[21];
     char treeHistory[41] = "";
-
-    printf("\t Masukkan ekspresi matematika : ");
-    scanf(" %[^\n]%*c", infix);
-    infix_to_postfix(infix, postfix);
-    printf("\n\t Dalam notasi post-fix : %s\n", postfix);
-    
-    addr treeRoot = BuildTreeFromPostfix(postfix);
-    printf("\n\t Traversal node pre-order di dalam binary tree-nya : \n\t");
-    printTree(treeRoot, treeHistory);
-
-    double result = TreeCalculate(treeRoot);
-    printf(" \n\n\tThe result is : %.2f \n", TreeCalculate(treeRoot));
-
+	char inputUser;
+	char inputUserStd = 48;
+	do{	
+		system("cls");
+		tampilMainMenu();
+	    printf("\n");
+		gotoxy(64,23);
+	
+		scanf(" %c",&inputUser);	
+		if(inputUser == 49){
+			do{	
+				tampilKalkStandar();
+				gotoxy(57,5);
+				scanf(" %[^\n]%*c2", infix);
+				infix_to_postfix(infix, postfix);
+				addr treeRoot = BuildTreeFromPostfix(postfix);
+				gotoxy(57,9);
+				printf(" %.2f", TreeCalculate(treeRoot));
+				getche();
+				gotoxy(88,13);
+				scanf(" %c", &inputUserStd);
+			} while(inputUserStd != 81);
+		}else if(inputUser == 50){
+			tampilKalkAkur();
+		}else if(inputUser == 51){
+			tampilHelp();
+		}else if(inputUser == 52){
+			tampilHistory();	
+		}else{
+			exit(0);
+		}
+	}while(inputUser != 48);
     return 0;
 }
+
+  
