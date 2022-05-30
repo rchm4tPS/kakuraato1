@@ -38,7 +38,7 @@ void tampilKalkStandar(){
  printf("\t\t\t\t\tPerhitungan\t%c\t\t\t\t       %c\n",186,186);
  printf("\t\t\t\t\tEkspresi\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
  printf("\n\n");
- printf("\t\t\t\t\tSilakan tekan angka 0 untuk kembali ke home menu\n");
+ printf("\t\t\t\t\tSilakan tekan angka Q untuk kembali ke home menu : \n");
  printf("\t\t\t\t========================================================================\n");
 }
 
@@ -60,7 +60,7 @@ void tampilKalkAkur(){
  printf("\t\t\t\t\tAkar\t\t%c\t\t\t\t       %c\n",186,186);
  printf("\t\t\t\t\tke-2\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
  printf("\n\n");
- printf("\t\t\t\t\tSilakan tekan angka 0 untuk kembali ke home menu");
+ printf("\t\t\t\t\tSilakan tekan angka 0 untuk kembali ke home menu : ");
  printf("\n\n");
  printf("\t\t\t\t========================================================================\n");
 }
@@ -83,12 +83,12 @@ void tampilCredit(){
  	printf("\t\t\t\t\t\t       Danu Mahesa (211524037)\n");
  	printf("\t\t\t\t\t\t      Husna Maulana (211524045)\n");
  	printf("\t\t\t\t\t\t    Rachmat Purwa Saputra (211524054)\n\n");
- 	printf("\t\t\t\t\t\tJURUSAN TEKNIK KOMPUTER DAN INFORMATIKA\n");
- 	printf("\t\t\t\t\t\t     PRODI D-IV TEKNIK INFORMATIKA\n");
- 	printf("\t\t\t\t\t\t       POLITEKNIK NEGERI BANDUNG\n");
- 	printf("\t\t\t\t\t\t                 2022\n");
+ 	printf("\t\t\t\t\t\t 			 Kelas : 1B \n");
+ 	printf("\t\t\t\t\t\t    D4 Teknik Informatika\n");
+ 	printf("\t\t\t\t\t\t    \n");
+ 	printf("\t\t\t\t\t\t    \n");
  	printf("\n");
-	printf("\t\t\t\t\t     Silakan tekan angka 0 untuk kembali ke home menu");
+	printf("\t\t\t\t\t     Silakan tekan angka 0 untuk kembali ke home menu : ");
  	printf("\n\n");
  	printf("\t\t\t\t========================================================================\n");
 }
@@ -104,10 +104,12 @@ void tampilHelp(){
 	help = fopen("Help.txt", "r");
 	if(help == NULL){
 		printf("File Doesn't Exist");
+		getche();
 	}else {
 		while(fscanf(help,"%[^\n]%*c", isiHelp) == 1){
 			printf("%s\n",isiHelp);
 		}
+		getche();
 	}
 	fclose(help);
 	printf("\n");
@@ -142,7 +144,54 @@ int getHeight()
 	return height;
 }
 
+void tampilHistory(){
+	system("cls");
+	char historyTabel[6][42]= { "[===============T===============]",
+								"|               |               |",
+								"{===============X===============}",
+								"|               |               |",
+								"L===============W===============/" 
+							  };
+	int i, j;
+	char ch;
+	i = j = 0;
+	
+	for (i = 0; i < 6; i++) {
+		for (j = 0; j < 42; j++) {
+			ch = historyTabel[i][j];
+			if (ch == '[') {
+				printf("%c", 218);
+			} else if (ch == '=') {
+				printf("%c", 196);
+			} else if (ch == 'T') {
+				printf("%c", 194);
+			} else if (ch == ']') {
+				printf("%c", 191);
+			} else if (ch == '|') {
+				printf("%c", 179);
+			} else if (ch == '{') {
+				printf("%c", 195);
+			} else if (ch == '}') {
+				printf("%c", 180);
+			} else if (ch == 'X') {
+				printf("%c", 197);
+			} else if (ch == 'L') {
+				printf("%c", 192);
+			} else if (ch == 'W') {
+				printf("%c", 193);
+			} else if (ch == '/') {
+				printf("%c", 217);
+			} else if (ch == ' ') {
+				printf("%c", 32);
+			}
+		}
+		printf("\n");
+	}
+	getche();
+}
+
 void printBanner() {
+	int i,j;
 	char banner_active[6][68] = {"==]  ==] =====] ==]  ==]==]   ==]======]  =====] ========] ======] ",
 								 "==| ==[/==[__==]==| ==[/==|   ==|==[__==]==[__==]L__==[__/==[___==]",
 								 "=====[/ =======|=====[/ ==|   ==|======[/=======|   ==|   ==|   ==|",
@@ -151,9 +200,9 @@ void printBanner() {
 								 "L_/  L_/L_/  L_/L_/  L_/ L_____/ L_/  L_/L_/  L_/   L_/    L_____/ "
 								};
 	
-	for (int i = 0; i < 6; i++) {
+	for (i = 0; i < 6; i++) {
 		gotoxy(36, 5+i);
-		for (int j = 0; j < 68; j++) {
+		for (j = 0; j < 68; j++) {
 			printASCII(banner_active[i][j]);
 		}
 		printf("\n");
