@@ -15,8 +15,12 @@
 
 void tampilMainMenu(){
 	printf("\n\n\t\t\t\t===========================================================================\n");
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 129);
 	printBanner();
+	SetConsoleTextAttribute(hConsole, 128);
 	printf("\n\n");
+	SetConsoleTextAttribute(hConsole, 143);
 	printf("\t\t\t\t\tPilihan Menu:\n");
 	printf("\t\t\t\t\t1. Kalkulator Standar\n");
 	printf("\t\t\t\t\t2. Kalkulator Akar Kuadrat\n");
@@ -25,9 +29,10 @@ void tampilMainMenu(){
 	printf("\n");
 	printf("\t\t\t\t\t0. Exit\n");
 	printf("\n\n");
-	printf("\t\t\t\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,187);
-	printf("\t\t\t\t\t%c  Menu Yang Dipilih : [ ]  %c\n",186,186);
-	printf("\t\t\t\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
+	SetConsoleTextAttribute(hConsole, 128);
+	printf("\t\t\t\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205, 205, 205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,187);
+	printf("\t\t\t\t\t%c  Menu Yang Dipilih : [   ]  %c\n",186,186);
+	printf("\t\t\t\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200, 205, 205, 205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
 	printf("\n\n");
 	printf("\t\t\t\t===========================================================================\n");
 }
@@ -178,6 +183,7 @@ void printBanner() {
 								 "==|  ==]==|  ==|==|  ==]L======[/==|  ==|==|  ==|   ==|   L======[/",
 								 "L_/  L_/L_/  L_/L_/  L_/ L_____/ L_/  L_/L_/  L_/   L_/    L_____/ "
 								};
+	
 	
 	for (i = 0; i < 6; i++) {
 		gotoxy(36, 5+i);
