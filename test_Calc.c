@@ -17,6 +17,7 @@
 #include "stack.c"
 #include "tampilan.c"
 #include "list.c"
+#include "calcAkarKuadrat.c"
 
 void beginApplication();
 void initiateStandardCalc();
@@ -54,7 +55,8 @@ void beginApplication() {
 			initiateStandardCalc();
 		}
 		else if (inputUser == 50) {
-			tampilKalkAkur();
+			// proses kalkulator akar kuadrat dimulai
+			initializeCalcAkarKuadrat();
 		}
 		else if (inputUser == 51) {
 			tampilHelp();

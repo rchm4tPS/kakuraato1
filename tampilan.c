@@ -67,7 +67,7 @@ void tampilKalkAkur(){
 	printf("\t\t\t\t\tAkar\t\t%c\t\t\t\t       %c\n",186,186);
 	printf("\t\t\t\t\tke-2\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
 	printf("\n\n");
-	printf("\t\t\t\t\tSilakan tekan angka 0 untuk kembali ke home menu : ");
+	printf("\t\t\t\t\tSilakan tekan huruf Q untuk kembali ke home menu : ");
 	printf("\n\n");
 	printf("\t\t\t\t========================================================================\n");
 }
