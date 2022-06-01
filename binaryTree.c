@@ -1,3 +1,11 @@
+/**
+ *  Program file name   : binaryTree.c
+ *  Description         : definisi dari header file untuk struktur data binary tree pada program kalkulator
+ *  Author              : Rachmat Purwa Saputra, 211524054
+ *  Compiler            : GCC
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,119 +16,91 @@
 
 
 addr createNode (double opValue, bool isOperand) {
-    addr _newNode = (addr)malloc(sizeof(NodeBinTree));
+    addr _newNode = nil;
+    AlokasiMemoriNode(&_newNode);
 
-    if (_newNode != NULL) {
-        _newNode->opValue = opValue;
-        _newNode->isOperand = isOperand;
-        _newNode->left = _newNode->right = NULL;
+    // Jika alokasi berhasil dilakukan, isi field node baru tersebut
+    if (_newNode != nil) {
+        opVal(_newNode) = opValue;
+        isOperand(_newNode) = isOperand;
+        left(_newNode) = right(_newNode) = nil;
     }
 
     return _newNode;
 }
 
-/*
-    Ide besarnya adalah :
-        - kunjungi root node
-        - jika root tsb. NULL, buat sebuah node
-        - jika root sebelah kanan bukan NULL ataupun digit atau operand, kunjungi daerah sub-tree kanan
-        - jika root sebelah kiri yang bukan NULL ataupun bukan digit angka/operand, DAN nilai node root bukan karakter '-' ataupun '#', kunjungi daerah sub-tree kanan
 
-        - jika tidak memenuhi semua kriteria di atas, kembalikan nilai address NULL
-*/
+void AlokasiMemoriNode (addr* _newNode) {
+    *(_newNode) = (addr)malloc(sizeof(NodeBinTree));
+}
+
+
 addr insertNodeToTree (double opValue, bool isOperand, addr root) {
     addr newNode;
 
-    if (root == NULL) {
+    // jika root tsb. NULL, buat sebuah node dan kembalikan alamat node tsb. berada
+    if (root == nil) {
         return createNode(opValue, isOperand);
     }
 
-    if (root->right == NULL || !root->right->isOperand) {
-        newNode = insertNodeToTree(opValue, isOperand, root->right);
-        if (newNode != NULL) {
-            root->right = newNode;
+    // jika pointer right bernilai NULL ataupun right bukan digit/operand
+    // kunjungi daerah sub-tree kanan untuk diisi node baru
+    if (right(root) == nil || !isOperand(right(root))) {
+        newNode = insertNodeToTree(opValue, isOperand, right(root));
+        if (newNode != nil) {
+            // hubungkan node baru dengan parentnya
+            right(root) = newNode;
             return root;
         }
     }
 
-    // berupa operator unary (negatif atau akar kuadrat)
-    if (root->opValue != '-' && root->opValue != '#' && 
-        (root->left == NULL || !root->left->isOperand)) {
-        newNode = insertNodeToTree(opValue, isOperand, root->left);
-        if (newNode != NULL) {
-            root->left = newNode;
+    // jika pointer left bernilai NULL ataupun left bukan digit/operand, 
+    // DAN nilai node root bukan karakter '-' ataupun '#'
+    // kunjungi daerah sub-tree kiri untuk diisi node baru
+    if (opVal(root) != '-' && opVal(root) != '#' && 
+        (left(root) == nil || !isOperand(left(root)))) {
+        newNode = insertNodeToTree(opValue, isOperand, left(root));
+        if (newNode != nil) {
+            // hubungkan node baru dengan parentnya
+            left(root) = newNode;
             return root;
         }
     }
 
-    return NULL;
+    // jika tidak memenuhi 3 kriteria di atas, kembalikan nilai NULL
+    return nil;
 }
 
-/*
-    Menampilkan susunan element di dalam tree secara pre-order traversal.
-*/
-void printTree (addr root, char* expression) {
-    double number = 0;
-    int leftNum = 0, rightNum = 0;
-    int i = 0;
-    int t = 0;
-    char num[40];
 
-    memset(num, 0, 40);
-
-    if (root != NULL) {
-        if (root->isOperand) {
+void printTree (addr root) {
+    if (root != nil) {
+        if (isOperand(root)) {
             // use fmod to count the remainders of floating number (instead of using % operator)
-            if (fmod(root->opValue, 2.00) != 0.00) printf("%.2f", root->opValue);
-            else printf("%d", (int)root->opValue); // print only number without leading zero if it's a whole number
-
-            number = root->opValue;
-            leftNum = (int)number;
-            number -= leftNum;
-            number *= 100;
-            rightNum = (int)number;
-            itoa(leftNum, num, 10); // convert int dengan base 10 (bilangan desimal) to string
-
-            for (i = 0; i < strlen(num); i++) {
-                expression[t++] = num[i];
-            }
-
-            expression[t++] = '.';
-            itoa(rightNum, num, 10);
-            if (rightNum == 0) {
-                // tambahkan dua char '0' setelah tanda titik pada array expression
-                // for (i = 0; i < 2; i++) {
-                //     expression[t++] = '0';
-                // }
+            if (fmod(opVal(root), 1.00) != 0.00) {
+                printf("%.2f", opVal(root));
             } else {
-                // tambahkan dua char digit sebelah kanan koma setelah tanda titik pada array expression
-                for (i = 0; i < 2; i++) {
-                    expression[t++] = num[i];
-                }
+                // print only number without leading zero if it's a whole number
+                printf("%.0f", opVal(root));
             }
         } else {
             // tampilkan langsung karakter operator
-            printf("%c", (int)root->opValue);
-
-            // tuliskan setiap karakter operator pada parameter input/output array of char expression
-            expression[t++] = (char)root->opValue;
+            printf("%c", (int)opVal(root));
         }
 
         printf(" ");
-        expression[t++] = '(';
-        printTree(root->left, expression);
-        printTree(root->right, expression);
-        // printf(" ");
-        expression[t++] = ')';
+        printTree(left(root));
+        printTree(right(root));
     }
 }
 
-addr BuildTreeFromPostfix (char* expression) {
-    addr tree = NULL;
+
+addr createTreeFromPostfix (char* expression) {
+    addr tree = nil;
     int i, index;
     char number[40];
     double temp;
 
+    // read every character in expression array one by one from the end to the very first char
     for (i = strlen(expression) - 1; i >= 0; i--) {
         if (expression[i] == ' ') {
       		continue;
@@ -150,38 +130,44 @@ addr BuildTreeFromPostfix (char* expression) {
     return tree;
 }
 
-double TreeCalculate(addr root) 
+
+double calculateTreeExpression(addr root) 
 {	
 	double rightNumber, leftNumber;
 	
     // Ditemui element node merupakan digit operand
-	if (root->isOperand) {
-    	return root->opValue;
+	if (isOperand(root)) {
+    	return opVal(root);
 	}
 	
 	// Menelusuri sub-tree kanan secara rekursif hingga ditemui operand
-    rightNumber = TreeCalculate(root->right);
+    rightNumber = calculateTreeExpression(right(root));
     
     // Ditemui operator negatif atau akar kuadrat di awal digit
-    if (root->opValue == '-') {
+    if (opVal(root) == '-') {
 		return rightNumber * -1;
 	}
-	if (root->opValue == '#') {
+	if (opVal(root) == '#') {
 		return sqrt(rightNumber);
 	}
 	
     // Menelusuri sub-tree kiri secara rekursif hingga ditemui operand
-    leftNumber = TreeCalculate(root->left);
+    leftNumber = calculateTreeExpression(left(root));
 	
-    // Menghitung dua bilangan kiri dan kanan dengan operator yang sesuai pada parent keduanya
-    switch ((int)(root->opValue)) {
+    // Ditemui operator biner (+ atau / atau * atau ^)
+    return calculateWithBinaryOperator((int)(opVal(root)), leftNumber, rightNumber);
+}
+
+
+double calculateWithBinaryOperator(int root_operator, double leftNum, double rightNum) {
+    switch ((root_operator)) {
 		case '+':
-	        return leftNumber + rightNumber;
+	        return leftNum + rightNum;
 		case '*':
-	        return leftNumber * rightNumber;
+	        return leftNum * rightNum;
 		case '/':
-	        return leftNumber / rightNumber;
+	        return leftNum / rightNum;
 		case '^':
-	        return pow(leftNumber, rightNumber);
+	        return pow(leftNum, rightNum);
 	}
 }
