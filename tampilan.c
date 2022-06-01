@@ -1,3 +1,11 @@
+/**
+ *  Program file name   : tampilan.c
+ *  Description         : definisi prototipe modul-modul behavior untuk tampilan pada Kakuraato.
+ *  Author              : Danu Mahesa, 211524037
+ *  Compiler            : GCC
+ *
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -7,7 +15,6 @@
 
 void tampilMainMenu(){
 	printf("\n\n\t\t\t\t===========================================================================\n");
-	//  printf("\t\t\t\t\tKAKURAATO\n");
 	printBanner();
 	printf("\n\n");
 	printf("\t\t\t\t\tPilihan Menu:\n");
@@ -26,43 +33,43 @@ void tampilMainMenu(){
 }
 
 void tampilKalkStandar(){
- system("cls");
- printf("\t\t\t\t========================================================================\n");
- printf("\t\t\t\t\tKalkulator Standar\n");
- printf("\n\n");
- printf("\t\t\t\t\tEkspresi\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
- printf("\t\t\t\t\tMatematika\t%c\t\t\t\t       %c\n",186,186);
- printf("\t\t\t\t\tYang Dihitung\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
- printf("\n");
- printf("\t\t\t\t\tHasil\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
- printf("\t\t\t\t\tPerhitungan\t%c\t\t\t\t       %c\n",186,186);
- printf("\t\t\t\t\tEkspresi\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
- printf("\n\n");
- printf("\t\t\t\t\tSilakan tekan angka Q untuk kembali ke home menu : \n");
- printf("\t\t\t\t========================================================================\n");
+	system("cls");
+	printf("\t\t\t\t========================================================================\n");
+	printf("\t\t\t\t\tKalkulator Standar\n");
+	printf("\n\n");
+	printf("\t\t\t\t\tEkspresi\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	printf("\t\t\t\t\tMatematika\t%c\t\t\t\t       %c\n",186,186);
+	printf("\t\t\t\t\tYang Dihitung\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	printf("\n");
+	printf("\t\t\t\t\tHasil\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	printf("\t\t\t\t\tPerhitungan\t%c\t\t\t\t       %c\n",186,186);
+	printf("\t\t\t\t\tEkspresi\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	printf("\n\n");
+	printf("\t\t\t\t\tSilakan tekan angka Q untuk kembali ke home menu : \n");
+	printf("\t\t\t\t========================================================================\n");
 }
 
 void tampilKalkAkur(){
- system("cls");
- printf("\t\t\t\t========================================================================\n");
- printf("\t\t\t\t\tKalkulator Akar Kuadrat\n");
- printf("t\t\t\t\t\t(bentuk umum x^2 + x + 1 = 0)");
- printf("\n\n");
- printf("\t\t\t\t\tEkspresi\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
- printf("\t\t\t\t\tMatematika\t%c\t\t\t\t       %c\n",186,186);
- printf("\t\t\t\t\tYang Dihitung\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
- printf("\n");
- printf("\t\t\t\t\tNilai\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
- printf("\t\t\t\t\tAkar\t\t%c\t\t\t\t       %c\n",186,186);
- printf("\t\t\t\t\tKe-1\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
- printf("\n");
- printf("\t\t\t\t\tNilai\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
- printf("\t\t\t\t\tAkar\t\t%c\t\t\t\t       %c\n",186,186);
- printf("\t\t\t\t\tke-2\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
- printf("\n\n");
- printf("\t\t\t\t\tSilakan tekan angka 0 untuk kembali ke home menu : ");
- printf("\n\n");
- printf("\t\t\t\t========================================================================\n");
+	system("cls");
+	printf("\t\t\t\t========================================================================\n");
+	printf("\t\t\t\t\tKalkulator Akar Kuadrat\n");
+	printf("t\t\t\t\t\t(bentuk umum x^2 + x + 1 = 0)");
+	printf("\n\n");
+	printf("\t\t\t\t\tEkspresi\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	printf("\t\t\t\t\tMatematika\t%c\t\t\t\t       %c\n",186,186);
+	printf("\t\t\t\t\tYang Dihitung\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	printf("\n");
+	printf("\t\t\t\t\tNilai\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	printf("\t\t\t\t\tAkar\t\t%c\t\t\t\t       %c\n",186,186);
+	printf("\t\t\t\t\tKe-1\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	printf("\n");
+	printf("\t\t\t\t\tNilai\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	printf("\t\t\t\t\tAkar\t\t%c\t\t\t\t       %c\n",186,186);
+	printf("\t\t\t\t\tke-2\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	printf("\n\n");
+	printf("\t\t\t\t\tSilakan tekan angka 0 untuk kembali ke home menu : ");
+	printf("\n\n");
+	printf("\t\t\t\t========================================================================\n");
 }
 
 void gotoxy(int x, int y) {
@@ -114,34 +121,6 @@ void tampilHelp(){
 	fclose(help);
 	printf("\n");
 	printf("\n\nInput Number 0 For Back to Main Menu : ");
-}
-
-int getWidth() 
-{		
-	CONSOLE_SCREEN_BUFFER_INFOEX info = {0};
-    HANDLE hConsole = NULL;
-    
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    info.cbSize = sizeof(info);
-    GetConsoleScreenBufferInfoEx(hConsole, &info);
-
-    int width = info.srWindow.Right;
-	
-	return width;
-}
-
-int getHeight() 
-{	
-	CONSOLE_SCREEN_BUFFER_INFOEX info = {0};
-    HANDLE hConsole = NULL;
-	
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    info.cbSize = sizeof(info);
-    GetConsoleScreenBufferInfoEx(hConsole, &info);
-
-    int height = info.srWindow.Bottom;
-    
-	return height;
 }
 
 void tampilHistory(){
