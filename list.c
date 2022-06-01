@@ -1,10 +1,9 @@
 /**
- * @file list.c
- * @author Husna Maulana
- * @brief implementasi header file list.h dengan alokasi dinamis untuk program kalkulator
- * 
- * Date     : 26 Mei 2022
- * 
+ *  Program file name   : list.c
+ *  Description         : definisi dari header file list untuk struktur data linked list pada program Kakuraato.
+ *  Author              : Husna Maulana, 211524045
+ *  Compiler            : GCC
+ *
  */
 
 #include "list.h"
@@ -19,19 +18,21 @@ void CreateList(List *L)
     L->root = Nil;
 }
 
-address Alokasi(char* expression)
+address Alokasi(char* expression, double result, char* timeOfCalculation)
 {
     address newItem = (address)malloc(sizeof(NodeList));
     if (newItem != Nil)
     {
       	strcpy(newItem->expression, expression);
-        Next(newItem) = Nil;
+        newItem->result = result;
+        strcpy(newItem->timeEnteringExpression, timeOfCalculation);
+        newItem->next = Nil;
     }
     return newItem;
 }
 
-void InsLast (List *L, char* expression) {
-    address NodeLast = Alokasi(expression);      
+void InsLast (List *L, char* expression, double result, char* timeOfCalculation) {
+    address NodeLast = Alokasi(expression, result, timeOfCalculation);
     address tmp =L->root;        
 
     if (NodeLast != Nil)
@@ -60,6 +61,4 @@ void PrintInfo (List L) {
             tmp = tmp->next;
         }
 	}
-
-    printf("\n");
 }

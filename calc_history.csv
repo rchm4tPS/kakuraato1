@@ -1,0 +1,5 @@
+Day, Date, Time Calculation Performed, Mathematic Expression, Result
+Wednesday, 01 Jun 2022, 12:23:59,15*(#(12+2*12))+10,100.00
+Wednesday, 01 Jun 2022, 12:24:16,#6,2.45
+Wednesday, 01 Jun 2022, 12:24:22,#2,1.41
+Wednesday, 01 Jun 2022, 12:24:45,(1/2)*#2,0.71
