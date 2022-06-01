@@ -18,6 +18,8 @@
 
 
 void initializeCalcAkarKuadrat() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
     char quadraticEquation[24];
     char* end;
     char delimiterEquals = '.', userInputAkur = '.';
@@ -34,7 +36,10 @@ void initializeCalcAkarKuadrat() {
         end = NULL; delimiterEquals = '.';
         memset(quadraticEquation, '\0', 24*sizeof(char));
 
+        SetConsoleTextAttribute(hConsole, 31); // asalnya 31
         tampilKalkAkur();
+
+        SetConsoleTextAttribute(hConsole, 26);
         gotoxy(58,5);
         scanf(" %[^\n]%*c", quadraticEquation);
         // printf(" \n %s\n", quadraticEquation);
@@ -139,7 +144,7 @@ void calculateTwoRealRoots(int a, int b, int c) {
 
     if (Discriminant < 0) {
         gotoxy(58,7);
-        printf("\nAkar-akar tidak real / imajiner\n");
+        printf("PERHATIAN! Akar-akar tidak real / imajiner\n");
     } else {
         akar1 = ((b * -1) + sqrt(Discriminant))/(2*a);
         akar2 = ((b * -1) - sqrt(Discriminant))/(2*a);
@@ -173,7 +178,7 @@ bool isVariableUniform (char* quadraticEq) {
 }
 
 bool isVariableAlphabet (char ch) {
-    return (ch >= 97 && ch <= 122);
+    return (ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122);
 }
 
 bool isEndedByEqualsZero (char* quadraticEq) {

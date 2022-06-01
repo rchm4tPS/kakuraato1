@@ -27,6 +27,7 @@ void userTimeHistory(char* arrayOfTime);
 int main() {
 	// Inisialisasi jendela cmd agar bersih dan berukuran 145 x 40
     system("cls");
+	system("color 80");
     // Make the console windows become full-size
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 	
@@ -37,14 +38,18 @@ int main() {
 
 void beginApplication() {
 	char inputUser;
-
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	
+	
 	// Lakukan selama user belum memilih untuk keluar dari aplikasi
 	do{	
+		SetConsoleTextAttribute(hConsole, 128);
 		system("cls");
 		tampilMainMenu();
 	    printf("\n");
 
-		gotoxy(64,23);
+		SetConsoleTextAttribute(hConsole, 143);
+		gotoxy(65,23);
 		scanf(" %c",&inputUser);	
 
 		if (inputUser == 48) {
