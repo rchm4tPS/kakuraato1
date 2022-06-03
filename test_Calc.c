@@ -25,9 +25,10 @@ void writeHistory(List _history);
 void userTimeHistory(char* arrayOfTime);
 
 int main() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 229); // asalnya 125
 	// Inisialisasi jendela cmd agar bersih dan berukuran 145 x 40
     system("cls");
-	system("color 80");
     // Make the console windows become full-size
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 	
@@ -38,18 +39,14 @@ int main() {
 
 void beginApplication() {
 	char inputUser;
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	
 	
 	// Lakukan selama user belum memilih untuk keluar dari aplikasi
 	do{	
-		SetConsoleTextAttribute(hConsole, 128);
 		system("cls");
 		tampilMainMenu();
 	    printf("\n");
 
-		SetConsoleTextAttribute(hConsole, 143);
-		gotoxy(65,23);
+		gotoxy(90,34);
 		scanf(" %c",&inputUser);	
 
 		if (inputUser == 48) {
@@ -68,7 +65,9 @@ void beginApplication() {
 		}
 		else if (inputUser == 52) {
 			tampilHistory();	
-		}
+		}else if (inputUser == 53) {
+			tampilCredit();	
+	    }
 		else {
 			printf("\nHarap masukkan angka 0, 1, 2, 3, atau 4 saja!\n");
 			getche();
@@ -89,9 +88,10 @@ void initiateStandardCalc() {
 	do{	
 		tampilKalkStandar();
 
-		gotoxy(57,5);
+		gotoxy(97,21);
+		
 		scanf(" %[^\n]%*c", infix);
-
+		
 		checkPostfix = infix_to_postfix(infix, postfix);
 
 		if (checkPostfix == -1) {
@@ -99,16 +99,14 @@ void initiateStandardCalc() {
 		}
 
 		addr treeRoot = createTreeFromPostfix(postfix);
-
-		gotoxy(57,9);
+		gotoxy(97,25);
 		double result = calculateTreeExpression(treeRoot);
 		printf(" %.2f", result);
-		getche();
 
 		userTimeHistory(timeCalculation);
 		InsLast(&exprHistory, infix, result, timeCalculation);
 
-		gotoxy(91,13);
+		gotoxy(131,28);
 		scanf(" %c", &inputUserStd);
 	} while (inputUserStd != 81);  // selama user tidak menekan karakter 'Q' dari keyboard
 
