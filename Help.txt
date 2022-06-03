@@ -6,6 +6,10 @@ Bahasa Indonesia :
   "^" untuk perpangkatan, "#" untuk operasi akar
 3.Pilih menu kalkulator akar kuadrat untuk mencari dua buah akar dari persamaan kuadrat yang dimasukan.
 4.Pilih menu kalkulator konverter untuk mengkonversikan satuan berat yang dimasukan. 
+5.contoh penulisan ekspresi akar dengan operator akar (#) 
+  #(10^2-64) akan menghasilkan 6
+ 
+ 
 English Language:
 1.There are 2 types of calculators that can be used.
 2.Select the standard calculator menu to calculate basic mathematical calculations.
