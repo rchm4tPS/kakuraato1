@@ -21,6 +21,7 @@
 
 void beginApplication();
 void initiateStandardCalc();
+void showHistory();
 void writeHistory(List _history);
 void userTimeHistory(char* arrayOfTime);
 
@@ -66,7 +67,8 @@ void beginApplication() {
 			tampilHelp();
 		}
 		else if (inputUser == 52) {
-			tampilHistory();	
+			// tampilHistory();	
+			showHistory();
 		}else if (inputUser == 53) {
 			tampilCredit();	
 	    }
@@ -79,8 +81,8 @@ void beginApplication() {
 }
 
 void initiateStandardCalc() {
-	char infix[21];
-    char postfix[21];
+	char infix[40];
+    char postfix[40];
 	char timeCalculation[64];
 	int checkPostfix = 0;
 	char inputUserStd = 48;
@@ -119,6 +121,61 @@ void initiateStandardCalc() {
 	system("cls");
 	writeHistory(exprHistory);
 	
+}
+
+void showHistory() {
+
+	system("cls");
+
+	int iter = 0;
+	int addLines = 1;
+	double resultFieldValue = 0;
+
+	char str[128];
+    int resultOfReadingFile;
+    FILE* fh = fopen("calc_history.csv", "r");
+
+	do {
+        resultOfReadingFile = fscanf(fh, "%127[^,\n]", str);
+
+        if(resultOfReadingFile == 0)
+        {
+            resultOfReadingFile = fscanf(fh, "%*c");
+        }
+        else
+        {
+            iter++;
+			if (iter == 1) {
+				gotoxy(8, 3+addLines);
+				printf("%s", str);
+			} else if (iter == 2) {
+				gotoxy(21, 3+addLines);
+				printf("%s", str);
+			} else if (iter == 3) {
+				gotoxy(36, 3+addLines);
+				printf("%s", str);
+			} else if (iter == 4) {
+				gotoxy(48, 3+addLines);
+				printf("%s", str);
+			} else if (iter == 5) {
+				if (addLines > 1) {
+					resultFieldValue = strtod(str, NULL);
+					gotoxy(75, 3+addLines);
+					printf("%.2f", resultFieldValue);
+				} else {
+					gotoxy(75, 3+addLines);
+					printf("%s", str);
+					addLines++;
+				}
+				addLines++;
+				iter = 0;
+			}
+        }
+
+    } while(resultOfReadingFile != EOF);
+
+	fclose(fh);
+	getche();
 }
 
 void writeHistory(List _history) {
