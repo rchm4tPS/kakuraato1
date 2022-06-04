@@ -13,111 +13,146 @@
 #include <windows.h>
 #include "tampilan.h"
 
+int getScreenWidth() {
+    CONSOLE_SCREEN_BUFFER_INFOEX _infoex = {0};
+    HANDLE handleOfConsoleOutput = NULL;
+
+    handleOfConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    _infoex.cbSize = sizeof(_infoex);
+    GetConsoleScreenBufferInfoEx(handleOfConsoleOutput, &_infoex);
+
+    return _infoex.srWindow.Right;
+}
+
+int getScreenHeight() {
+    CONSOLE_SCREEN_BUFFER_INFOEX _infoex = {0};
+    HANDLE handleOfConsoleOutput = NULL;
+
+    handleOfConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    _infoex.cbSize = sizeof(_infoex);
+    GetConsoleScreenBufferInfoEx(handleOfConsoleOutput, &_infoex);
+
+    return _infoex.srWindow.Bottom;
+}
+
 void tampilMainMenu(){
-	gotoxy(65,9);
+	int widthOfScreen = getScreenWidth();
+	int heightOfScreen = getScreenHeight();
+
+	int _X = widthOfScreen / 2 - 31;
+	int _Y = heightOfScreen / 2 - 9;
+
+	gotoxy(_X - 8, _Y - 3);
 	printf("=====================================================================================\n");
 	printBanner();
 	printf("\n\n");
-	gotoxy(65,23);
+	gotoxy(_X - 8, _Y + 10);
 	printf("Pilihan Menu:\n");
-	gotoxy(65,25);
+	gotoxy(_X - 6, _Y + 11);
 	printf("1. Kalkulator Standar\n");
-	gotoxy(65,26);
+	gotoxy(_X - 6, _Y + 12);
 	printf("2. Kalkulator Akar Kuadrat\n");
-	gotoxy(65,27);
+	gotoxy(_X - 6, _Y + 13);
 	printf("3. Help\n");
-	gotoxy(65,28);
+	gotoxy(_X - 6, _Y + 14);
 	printf("4. History Penggunaan Kakuraato\n");
-	gotoxy(65,29);
+	gotoxy(_X - 6, _Y + 15);
 	printf("5. Credit\n");
-	gotoxy(65,30);
+	gotoxy(_X - 6, _Y + 16);
 	printf("\n");
-	gotoxy(65,31);
+	gotoxy(_X - 6, _Y + 17);
 	printf(" 0. Exit\n");
-	gotoxy(65,32);
+	gotoxy(_X - 8, _Y + 18);
 	printf("\n\n");
-	gotoxy(65,33);
+	gotoxy(_X - 8, _Y + 19);
 	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205, 205, 205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,187);
-	gotoxy(65,34);
+	gotoxy(_X - 8, _Y + 20);
 	printf("%c  Menu Yang Dipilih : [   ]  %c\n",186,186);
-	gotoxy(65,35);
+	gotoxy(_X - 8, _Y + 21);
 	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200, 205, 205, 205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
-	gotoxy(65,36);
+	gotoxy(_X - 8, _Y + 22);
 	printf("\n\n");
-	gotoxy(65,37);
+	gotoxy(_X - 8, _Y + 23);
 	printf("=====================================================================================\n");
 }
 
 void tampilKalkStandar(){
+	int _X = getScreenWidth() / 2 - 31;
+	int _Y = getScreenHeight() / 2 - 9;
+
 	system("cls");
-	gotoxy(43,14);
-	printf("\t\t\t\t========================================================================\n");
-	gotoxy(43,18);
-	printf("\t\t\t\t\t\t\tKALKULATOR STANDAR\n");
-	gotoxy(43,19);
+	gotoxy(_X - 2, _Y);
+	printf("========================================================================\n");
+	gotoxy(_X + 25, _Y + 2);
+	printf("KALKULATOR STANDAR\n");
+	gotoxy(_X + 2, _Y+5);
 	printf("\n\n");
-	gotoxy(43,20);
-	printf("\t\t\t\t\tEkspresi\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(43,21);
-	printf("\t\t\t\t\tMatematika\t%c\t\t\t\t       %c\n",186,186);
-	gotoxy(43,22);
-	printf("\t\t\t\t\tYang Dihitung\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(43,23);
+	gotoxy(_X +2, _Y + 6);
+	printf("Ekspresi\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	gotoxy(_X +2, _Y + 7);
+	printf("Matematika\t%c\t\t\t\t       %c\n",186,186);
+	gotoxy(_X +2, _Y + 8);
+	printf("Yang Dihitung\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	gotoxy(_X +2, _Y + 9);
 	printf("\n");
-	gotoxy(43,24);
-	printf("\t\t\t\t\tHasil\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(43,25);
-	printf("\t\t\t\t\tPerhitungan\t%c\t\t\t\t       %c\n",186,186);
-	gotoxy(43,26);
-	printf("\t\t\t\t\tEkspresi\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(43,27);
+	gotoxy(_X +2, _Y + 10);
+	printf("Hasil\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	gotoxy(_X +2, _Y + 11);
+	printf("Perhitungan\t%c\t\t\t\t       %c\n",186,186);
+	gotoxy(_X +2, _Y + 12);
+	printf("Ekspresi\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	gotoxy(_X +2, _Y + 13);
 	printf("\n\n");
-	gotoxy(43,28);
-	printf("\t\t\t\t\tSilakan tekan huruf Q untuk kembali ke home menu : \n");
-	gotoxy(43,32);
-	printf("\t\t\t\t========================================================================\n");
+	gotoxy(_X +2, _Y + 15);
+	printf("Silakan tekan huruf Q untuk kembali ke home menu : \n");
+	gotoxy(_X +2, _Y + 16);
+	printf("Atau tekan huruf apapun selain Q untuk kembali menggunakan kalkualtor standar");
+	gotoxy(_X - 2, _Y + 18);
+	printf("========================================================================\n");
 }
 
 void tampilKalkAkur(){
+	int _X = getScreenWidth() / 2 - 31;
+	int _Y = getScreenHeight() / 2 - 9;
+
 	system("cls");
-	gotoxy(43,14);
-	printf("\t\t\t\t========================================================================\n\n");
-	gotoxy(43,15);
-	printf("\t\t\t\t\tKALKULATOR AKAR KUADRAT\n");
-	gotoxy(43,16);
-	printf("t\t\t\t\t\t(bentuk umum x^2 + x + 1 = 0)");
-	gotoxy(43,17);
+	gotoxy(_X - 2, _Y - 4);
+	printf("========================================================================\n\n");
+	gotoxy(_X + 23, _Y - 2);
+	printf("KALKULATOR AKAR KUADRAT\n");
+	gotoxy(_X + 20, _Y - 1);
+	printf("(bentuk umum x^2 + x + 1 = 0)");
+	gotoxy(_X + 2, _Y+1);
 	printf("\n\n");
-	gotoxy(43,18);
-	printf("\t\t\t\t\tEkspresi\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(43,19);
-	printf("\t\t\t\t\tMatematika\t%c\t\t\t\t       %c\n",186,186);
-	gotoxy(43,20);
-	printf("\t\t\t\t\tYang Dihitung\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(43,21);
+	gotoxy(_X +2, _Y + 2);
+	printf("Ekspresi\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	gotoxy(_X +2, _Y + 3);
+	printf("Matematika\t%c\t\t\t\t          %c\n",186,186);
+	gotoxy(_X +2, _Y + 4);
+	printf("Yang Dihitung\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	gotoxy(_X +2, _Y + 5);
 	printf("\n");
-	gotoxy(43,22);
-	printf("\t\t\t\t\tNilai\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(43,23);
-	printf("\t\t\t\t\tAkar\t\t%c\t\t\t\t       %c\n",186,186);
-	gotoxy(43,24);
-	printf("\t\t\t\t\tKe-1\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(43,25);
+	gotoxy(_X +2, _Y + 6);
+	printf("Nilai\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	gotoxy(_X +2, _Y + 7);
+	printf("Akar\t\t%c\t\t\t\t          %c\n",186,186);
+	gotoxy(_X +2, _Y + 8);
+	printf("Ke-1\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	gotoxy(_X +2, _Y + 9);
 	printf("\n");
-	gotoxy(43,26);
-	printf("\t\t\t\t\tNilai\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(43,27);
-	printf("\t\t\t\t\tAkar\t\t%c\t\t\t\t       %c\n",186,186);
-	gotoxy(43,28);
-	printf("\t\t\t\t\tke-2\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(43,29);
-	printf("\n\n");
-	gotoxy(43,30);
-	printf("\t\t\t\t\tSilakan tekan huruf Q untuk kembali ke home menu : ");
-	gotoxy(43,31);
-	printf("\n\n");
-	gotoxy(43,32);
-	printf("\t\t\t\t========================================================================\n");
+	gotoxy(_X +2, _Y + 10);
+	printf("Nilai\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205, 205, 205, 205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	gotoxy(_X +2, _Y + 11);
+	printf("Akar\t\t%c\t\t\t\t          %c\n",186,186);
+	gotoxy(_X +2, _Y + 12);
+	printf("ke-2\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	
+	gotoxy(_X +2, _Y + 15);
+	printf("Silakan tekan huruf Q untuk kembali ke home menu : ");
+	gotoxy(_X +2, _Y + 16);
+	printf("Atau tekan huruf apapun selain Q untuk kembali menggunakan kalkualtor akar kuadrat");
+	gotoxy(_X - 2, _Y + 19);
+	printf("========================================================================\n");
 }
 
 void gotoxy(int x, int y) {
@@ -130,49 +165,48 @@ void gotoxy(int x, int y) {
 }
 
 void tampilCredit(){
+	int _X = getScreenWidth() / 2 - 31;
+	int _Y = getScreenHeight() / 2 - 9;
+
 	system("cls");
-	gotoxy(43,12);
-	printf("\t\t\t\t========================================================================\n");
-	gotoxy(43,13);
- 	printf("\t\t\t\t\t\t\t\tCREDIT\n");
- 	gotoxy(43,14);
- 	printf("\t\t\t\t========================================================================\n");
- 	gotoxy(43,15);
- 	printf("\n");
- 	gotoxy(43,16);
- 	printf("\t\t\t\t\t\t\t\tAUTHOR   \n\n");
- 	gotoxy(43,17);
- 	printf("\t\t\t\t\t\t       Danu Mahesa (211524037)\n");
- 	gotoxy(43,18);
- 	printf("\t\t\t\t\t\t      Husna Maulana (211524045)\n");
- 	gotoxy(43,19);
- 	printf("\t\t\t\t\t\t    Rachmat Purwa Saputra (211524054)\n\n");
- 	gotoxy(43,20);
- 	printf("\t\t\t\t\t        	      Kelas : 1B \n");
- 	gotoxy(43,21);
- 	printf("\t\t\t\t\t\t         D4 Teknik Informatika\n");
- 	gotoxy(43,22);
- 	printf("\t\t\t\t\t\t    \n");
- 	gotoxy(43,23);
- 	printf("\t\t\t\t\t\t    \n");
- 	gotoxy(43,24);
- 	printf("\n");
- 	gotoxy(43,25);
- 	printf("\n\n");
- 	gotoxy(43,26);
- 	printf("\t\t\t\t========================================================================\n");
+	gotoxy(_X - 2, _Y);
+	printf("========================================================================\n");
+	gotoxy(_X + 30, _Y + 1);
+ 	printf("CREDIT\n");
+ 	gotoxy(_X - 2, _Y + 2);
+ 	printf("========================================================================\n");
+
+ 	gotoxy(_X + 30, _Y + 4);
+ 	printf("AUTHOR   \n\n");
+ 	gotoxy(_X + 22, _Y + 5);
+ 	printf("Danu Mahesa (211524037)\n");
+ 	gotoxy(_X + 21, _Y + 6);
+ 	printf("Husna Maulana (211524045)\n");
+ 	gotoxy(_X + 17, _Y + 7);
+ 	printf("Rachmat Purwa Saputra (211524054)\n\n");
+ 	gotoxy(_X + 28, _Y + 9);
+ 	printf("Kelas : 1B \n");
+ 	gotoxy(_X + 23, _Y + 11);
+ 	printf("D4 Teknik Informatika\n");
+	gotoxy(_X + 31, _Y + 12);
+	printf("2022");
+ 	gotoxy(_X - 2, _Y + 14);
+ 	printf("========================================================================\n");
  	getche();
 }
 
 void tampilHelp(){
+	int _X = getScreenWidth() / 2 - 31;
+	int _Y = getScreenHeight() / 2 - 9;
+
 	FILE *help = NULL; 
 	system("cls");
-	gotoxy(50,4);
-	printf("\t\t\t\t ======================\n");
-	gotoxy(50,5);
-	printf("\t\t\t\t          HELP \n");
-	gotoxy(50,6);
-	printf("\t\t\t\t ======================\n");
+	gotoxy(_X + 19, _Y - 7);
+	printf("======================\n");
+	gotoxy(_X + 28, _Y - 6);
+	printf("HELP \n");
+	gotoxy(_X + 19, _Y - 5);
+	printf("======================\n");
 	char isiHelp[300];
 	
 	help = fopen("Help.txt", "r");
@@ -182,7 +216,7 @@ void tampilHelp(){
 	}else {
 		int i = 1;
 		while(fscanf(help,"%[^\n]%*c", isiHelp) == 1){
-			gotoxy(50,8+i);
+			gotoxy(_X - 15, _Y - 2 + i);
 			printf("%s\n",isiHelp);
 			i++;
 		}
@@ -241,6 +275,12 @@ void tampilHistory(){
 
 void printBanner() {
 	int i,j;
+	int widthOfScreen = getScreenWidth();
+	int heightOfScreen = getScreenHeight();
+
+	int _X = widthOfScreen / 2 - 31;
+	int _Y = heightOfScreen / 2 - 9;
+
 	char banner_active[6][68] = {"==]  ==] =====] ==]  ==]==]   ==]======]  =====] ========] ======] ",
 								 "==| ==[/==[__==]==| ==[/==|   ==|==[__==]==[__==]L__==[__/==[___==]",
 								 "=====[/ =======|=====[/ ==|   ==|======[/=======|   ==|   ==|   ==|",
@@ -251,7 +291,7 @@ void printBanner() {
 	
 	
 	for (i = 0; i < 6; i++) {
-		gotoxy(74, 15+i);
+		gotoxy(_X, _Y + 1 + i);
 		for (j = 0; j < 68; j++) {
 			printASCII(banner_active[i][j]);
 		}

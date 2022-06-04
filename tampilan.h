@@ -9,6 +9,16 @@
 #ifndef tampilan_h
 #define tampilan_h
 
+/**
+ * Mendapatkan lebar screen monitor user dalam bilangan integer.
+ */
+int getScreenWidth();
+
+/**
+ * Mendapatkan tinggi screen monitor user dalam bilangan integer.
+ */
+int getScreenHeight();
+
 /** 
  * Mengarahkan kursor untuk tampilan output ataupun kursor 
  * untuk proses inputan ke koordinat yang diinginkan di dalam
