@@ -18,6 +18,9 @@
 
 
 void initializeCalcAkarKuadrat() {
+    int _X = getScreenWidth() / 2 - 31;
+	int _Y = getScreenHeight() / 2 - 9;
+
     int i;
     char quadraticEquation[24];
     char* end;
@@ -37,11 +40,9 @@ void initializeCalcAkarKuadrat() {
 
         tampilKalkAkur();
 
-        gotoxy(98,19);
+        gotoxy(_X +22, _Y + 3);
         scanf(" %[^\n]%*c", quadraticEquation);
-        // printf(" \n %s\n", quadraticEquation);
 
-        
         if (isEndedByEqualsZero(quadraticEquation) && isVariableUniform (quadraticEquation)) {
             for (i = 0; i < strlen(quadraticEquation) && delimiterEquals != '='; i++) {
                 if (quadraticEquation[i] == ' ') continue;
@@ -123,32 +124,35 @@ void initializeCalcAkarKuadrat() {
 
             calculateTwoRealRoots(a, b, c);
         } else {
-            gotoxy(98,21);
+            gotoxy(_X + 22, _Y + 5);
             printf("Persamaan Kuadrat tidak valid! Harus sama variabelnya dan berakhiran '= 0'\n");
         }
         
         // a, b, dan c yang didapat merupakan koefisien (dan c sbg konstanta) utk persamaan kuadrat
         // printf(" \n%.2f %.2f %.2f\n", a, b, c);
 
-        gotoxy(131,30);
+        gotoxy(_X + 53, _Y + 15);
 		scanf(" %c", &userInputAkur);
     } while (userInputAkur != 81);
 }
 
 void calculateTwoRealRoots(int a, int b, int c) {
+    int _X = getScreenWidth() / 2 - 31;
+	int _Y = getScreenHeight() / 2 - 9;
+
     double Discriminant = pow(b, 2) - (4*a*c);
     double akar1, akar2;
 
     if (Discriminant < 0) {
-        gotoxy(98,21);
+        gotoxy(_X + 22, _Y + 5);
         printf("PERHATIAN! Akar-akar tidak real / imajiner\n");
     } else {
         akar1 = ((b * -1) + sqrt(Discriminant))/(2*a);
         akar2 = ((b * -1) - sqrt(Discriminant))/(2*a);
 
-        gotoxy(98,23);
+        gotoxy(_X +22, _Y + 7);
         printf("%.2f", akar1);
-        gotoxy(98,27);
+        gotoxy(_X +22, _Y + 11);
         printf("%.2f", akar2);
     }
 }
