@@ -1,5 +1,5 @@
 /**
- *  Program file name   : testCalc.c
+ *  Program file name   : test_Calc.c
  *  Description         : Main driver untuk program Kakuraato
  *  Author              : Danu Mahesa, 211524037 || Extended by : Rachmat Purwa Saputra, 211524054
  *  Compiler            : GCC
@@ -26,8 +26,8 @@ void userTimeHistory(char* arrayOfTime);
 
 int main() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, 229); // asalnya 125
-	// Inisialisasi jendela cmd agar bersih dan berukuran 145 x 40
+	SetConsoleTextAttribute(hConsole, 229); // asalnya 125, lalu 229 - alternatifnya 245. Ada lagi 252 (merah) atau 249 (biru cerah).
+	// Inisialisasi jendela cmd agar bersih
     system("cls");
     // Make the console windows become full-size
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
@@ -39,6 +39,8 @@ int main() {
 
 void beginApplication() {
 	char inputUser;
+	int _X = getScreenWidth() / 2 - 31;
+	int _Y = getScreenHeight() / 2 - 9;
 	
 	// Lakukan selama user belum memilih untuk keluar dari aplikasi
 	do{	
@@ -46,7 +48,7 @@ void beginApplication() {
 		tampilMainMenu();
 	    printf("\n");
 
-		gotoxy(90,34);
+		gotoxy(_X + 17, _Y + 20);
 		scanf(" %c",&inputUser);	
 
 		if (inputUser == 48) {
@@ -69,7 +71,8 @@ void beginApplication() {
 			tampilCredit();	
 	    }
 		else {
-			printf("\nHarap masukkan angka 0, 1, 2, 3, atau 4 saja!\n");
+			gotoxy(_X + 25, _Y + 20);
+			printf("Harap masukkan angka 0, 1, 2, 3, 4, atau 5 saja!");
 			getche();
 		}
 	} while (inputUser != 48);  // selama bukan digit 0 yang dipilih user
@@ -82,13 +85,16 @@ void initiateStandardCalc() {
 	int checkPostfix = 0;
 	char inputUserStd = 48;
 
+	int _X = getScreenWidth() / 2 - 31;
+	int _Y = getScreenHeight() / 2 - 9;
+
 	List exprHistory;
 	CreateList(&exprHistory);
 
 	do{	
 		tampilKalkStandar();
 
-		gotoxy(97,21);
+		gotoxy(_X + 22, _Y + 7);
 		
 		scanf(" %[^\n]%*c", infix);
 		
@@ -99,14 +105,14 @@ void initiateStandardCalc() {
 		}
 
 		addr treeRoot = createTreeFromPostfix(postfix);
-		gotoxy(97,25);
 		double result = calculateTreeExpression(treeRoot);
+		gotoxy(_X + 21, _Y + 11);
 		printf(" %.2f", result);
 
 		userTimeHistory(timeCalculation);
 		InsLast(&exprHistory, infix, result, timeCalculation);
 
-		gotoxy(131,28);
+		gotoxy(_X + 53, _Y + 15);
 		scanf(" %c", &inputUserStd);
 	} while (inputUserStd != 81);  // selama user tidak menekan karakter 'Q' dari keyboard
 
