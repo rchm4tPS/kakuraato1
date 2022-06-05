@@ -257,52 +257,6 @@ void tampilHelp(){
 	printf("\n\nInput Number 0 For Back to Main Menu : ");
 }
 
-void tampilHistory(){
-	system("cls");
-	char historyTabel[6][42]= { "[===============T===============]",
-								"|               |               |",
-								"{===============X===============}",
-								"|               |               |",
-								"L===============W===============/" 
-							  };
-	int i, j;
-	char ch;
-	i = j = 0;
-	
-	for (i = 0; i < 6; i++) {
-		for (j = 0; j < 42; j++) {
-			ch = historyTabel[i][j];
-			if (ch == '[') {
-				printf("%c", 218);
-			} else if (ch == '=') {
-				printf("%c", 196);
-			} else if (ch == 'T') {
-				printf("%c", 194);
-			} else if (ch == ']') {
-				printf("%c", 191);
-			} else if (ch == '|') {
-				printf("%c", 179);
-			} else if (ch == '{') {
-				printf("%c", 195);
-			} else if (ch == '}') {
-				printf("%c", 180);
-			} else if (ch == 'X') {
-				printf("%c", 197);
-			} else if (ch == 'L') {
-				printf("%c", 192);
-			} else if (ch == 'W') {
-				printf("%c", 193);
-			} else if (ch == '/') {
-				printf("%c", 217);
-			} else if (ch == ' ') {
-				printf("%c", 32);
-			}
-		}
-		printf("\n");
-	}
-	getche();
-}
-
 void printBanner() {
 	int i,j;
 	int widthOfScreen = getScreenWidth();
@@ -323,13 +277,13 @@ void printBanner() {
 	for (i = 0; i < 6; i++) {
 		gotoxy(_X, _Y + 1 + i);
 		for (j = 0; j < 68; j++) {
-			printASCII(banner_active[i][j]);
+			printASCIIforBanner(banner_active[i][j]);
 		}
 		printf("\n");
 	}
 }
 
-void printASCII(char ch) {
+void printASCIIforBanner(char ch) {
 	if (ch == '=') {
 		printf("%c", 219);
 	} else if (ch == '|') {
@@ -346,6 +300,34 @@ void printASCII(char ch) {
 		printf("%c", 32);
 	} else if (ch == '_') {
 		printf("%c", 205);
+	}
+}
+
+void printASCIIforHistTable(char ch) {
+	if (ch == '=') {
+		printf("%c", 196);
+	} else if (ch == '[') {
+		printf("%c", 218);
+	} else if (ch == 'L') {
+		printf("%c", 192);
+	} else if (ch == 'T') {
+		printf("%c", 194);
+	} else if (ch == 'X') {
+		printf("%c", 197);
+	} else if (ch == '7') {
+		printf("%c", 191);
+	} else if (ch == '/') {
+		printf("%c", 217);
+	} else if (ch == '^') {
+		printf("%c", 193);
+	} else if (ch == '}') {
+		printf("%c", 195);
+	} else if (ch == '{') {
+		printf("%c", 180);
+	} else if (ch == '|') {
+		printf("%c", 179);
+	} else if (ch == ' ') {
+		printf("%c", 32);
 	}
 }
 
