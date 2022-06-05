@@ -62,14 +62,6 @@ void tampilKalkAkur();
 void tampilHelp();
 
 /**
- * Menampilkan tampilan history penggunaan kalkulator
- *  
- * I.S. : Tampilan history belum tampil di layar.
- * F.S. : Tampilan history tampil di layar.
- */
-void tampilHistory();
-
-/**
  * Menampilkan tampilan credit ataupun author.
  * 
  * I.S. : tampilan credit belum tampil di layar.
@@ -91,6 +83,14 @@ void printBanner();
  * I.S. : Array banner masih berupa karakter standar
  * F.S. : Array banner sudah dikonversi menjadi bentuk blok-blok pada karakter ASCII extended.
  */
-void printASCII(char ch);
+void printASCIIforBanner(char ch);
+
+/**
+ * Mengubah karakter-karakter pada array history table agar menjadi character blok ASCII extended sehingga membentuk tabel.
+ * 
+ * I.S. : Array historyTable masih berupa karakter standar
+ * F.S. : Array historyTable sudah menjadi karakter ASCII extended.
+ */
+void printASCIIforHistTable(char ch);
 
 #endif
