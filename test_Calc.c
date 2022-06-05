@@ -18,21 +18,22 @@
 #include "tampilan.c"
 #include "list.c"
 #include "calcAkarKuadrat.c"
+#include "calcStandar.c"
+#include "history.c"
 
 void beginApplication();
-void initiateStandardCalc();
-void showHistory();
-void writeHistory(List _history);
-void userTimeHistory(char* arrayOfTime);
 
 int main() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, 229); // asalnya 125, lalu 229 - alternatifnya 245. Ada lagi 252 (merah) atau 249 (biru cerah).
+	
 	// Inisialisasi jendela cmd agar bersih
     system("cls");
+
     // Make the console windows become full-size
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 	
+	// Aplikasi dimulai
 	beginApplication();
 
     return 0;
@@ -64,154 +65,22 @@ void beginApplication() {
 			initializeCalcAkarKuadrat();
 		}
 		else if (inputUser == 51) {
+			// menampilkan fitur help
 			tampilHelp();
 		}
 		else if (inputUser == 52) {
-			// tampilHistory();	
+			// menampilkan history penggunaan kalkulator standar.
 			showHistory();
-		}else if (inputUser == 53) {
+		}
+		else if (inputUser == 53) {
+			// menampilkan fitur credit
 			tampilCredit();	
 	    }
 		else {
+			// inputan angka tidak valid, beritakan kesalahan input
 			gotoxy(_X + 25, _Y + 20);
 			printf("Harap masukkan angka 0, 1, 2, 3, 4, atau 5 saja!");
 			getche();
 		}
 	} while (inputUser != 48);  // selama bukan digit 0 yang dipilih user
-}
-
-void initiateStandardCalc() {
-	char infix[40];
-    char postfix[40];
-	char timeCalculation[64];
-	int checkPostfix = 0;
-	char inputUserStd = 48;
-
-	int _X = getScreenWidth() / 2 - 31;
-	int _Y = getScreenHeight() / 2 - 9;
-
-	List exprHistory;
-	CreateList(&exprHistory);
-
-	do{	
-		tampilKalkStandar();
-
-		gotoxy(_X + 22, _Y + 7);
-		
-		scanf(" %[^\n]%*c", infix);
-		
-		checkPostfix = infix_to_postfix(infix, postfix);
-
-		if (checkPostfix == -1) {
-			printf("Ekspresi tidak valid");
-		}
-
-		addr treeRoot = createTreeFromPostfix(postfix);
-		double result = calculateTreeExpression(treeRoot);
-		gotoxy(_X + 21, _Y + 11);
-		printf(" %.2f", result);
-
-		userTimeHistory(timeCalculation);
-		InsLast(&exprHistory, infix, result, timeCalculation);
-
-		gotoxy(_X + 53, _Y + 15);
-		scanf(" %c", &inputUserStd);
-	} while (inputUserStd != 81);  // selama user tidak menekan karakter 'Q' dari keyboard
-
-	system("cls");
-	writeHistory(exprHistory);
-	
-}
-
-void showHistory() {
-
-	system("cls");
-
-	int iter = 0;
-	int addLines = 1;
-	double resultFieldValue = 0;
-
-	char str[128];
-    int resultOfReadingFile;
-    FILE* fh = fopen("calc_history.csv", "r");
-
-	do {
-        resultOfReadingFile = fscanf(fh, "%127[^,\n]", str);
-
-        if(resultOfReadingFile == 0)
-        {
-            resultOfReadingFile = fscanf(fh, "%*c");
-        }
-        else
-        {
-            iter++;
-			if (iter == 1) {
-				gotoxy(8, 3+addLines);
-				printf("%s", str);
-			} else if (iter == 2) {
-				gotoxy(21, 3+addLines);
-				printf("%s", str);
-			} else if (iter == 3) {
-				gotoxy(36, 3+addLines);
-				printf("%s", str);
-			} else if (iter == 4) {
-				gotoxy(48, 3+addLines);
-				printf("%s", str);
-			} else if (iter == 5) {
-				if (addLines > 1) {
-					resultFieldValue = strtod(str, NULL);
-					gotoxy(75, 3+addLines);
-					printf("%.2f", resultFieldValue);
-				} else {
-					gotoxy(75, 3+addLines);
-					printf("%s", str);
-					addLines++;
-				}
-				addLines++;
-				iter = 0;
-			}
-        }
-
-    } while(resultOfReadingFile != EOF);
-
-	fclose(fh);
-	getche();
-}
-
-void writeHistory(List _history) {
-	FILE *fhist = fopen("calc_history.csv", "a");  // mode append kepada file csv
-
-	if (fhist != NULL) {
-		address nodeList = _history.root;
-
-		while (nodeList != NULL) {
-			// delimiter file csv adalah koma (',').
-			fprintf(fhist, "%s,%s,%.2f\n", nodeList->timeEnteringExpression, nodeList->expression, nodeList->result);
-			nodeList = nodeList->next;
-		}
-	} else {
-		exit(EXIT_FAILURE);
-	}
-
-	fclose(fhist);
-	printf("\nSuccessfully recorded data to the file!\n");  //pesan jika proses penulisan ke file berhasil
-	getche();
-}
-
-void userTimeHistory(char* arrayOfTime) {
-	// Disadur dari : https://linuxhint.com/gettimeofday_c_language/
-	// pada tanggal 1 Juni 2022
-
-	struct timeval tv;
-	time_t t;
-	struct tm *info;
-	char buffer[64];
-
-	gettimeofday(&tv, NULL);
-    t = tv.tv_sec;
-
-    info = localtime(&t);
-    strftime(buffer, sizeof buffer, "%A, %d %b %Y, %H:%M:%S", info); //format : Hari, tanggal bulan tahun, Jam, menit, detik
-
-	strcpy(arrayOfTime, buffer);
 }
