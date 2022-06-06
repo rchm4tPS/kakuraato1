@@ -1,0 +1,21 @@
+Bahasa Indonesia :
+1.Terdapat 2 pilihan jenis kalkulator yang dapat digunakan.
+2.Pilih menu kalkulator standar untuk menghitung perhitungan matematika dasar.
+  Inputan yang digunakan harus berupa string yang berupa angka dan operand yaitu "+" untuk penjumlahan,
+  "-" untuk pengurangan, "*" untuk perkalian, "/" untuk pembagian, 
+  "^" untuk perpangkatan, "#" untuk operasi akar
+3.Pilih menu kalkulator akar kuadrat untuk mencari dua buah akar dari persamaan kuadrat yang dimasukan.
+4.Pilih menu kalkulator konverter untuk mengkonversikan satuan berat yang dimasukan. 
+5.contoh penulisan ekspresi akar dengan operator akar (#) 
+  #(10^2-64) akan menghasilkan 6
+ 
+ 
+English Language:
+1.There are 2 types of calculators that can be used.
+2.Select the standard calculator menu to calculate basic mathematical calculations.
+  The input used must be a string in the form of numbers and operands i.e. "+" for addition,
+  "-" for subtraction, "*" for multiplication, "/" for division, 
+  "^" for power, "#" for root operation.
+3.Select the square root calculator menu to find the two roots of the inserted quadratic equation.
+4.Select the converter calculator menu to convert the entered unit of weight.
+
